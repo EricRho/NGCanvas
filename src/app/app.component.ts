@@ -10,8 +10,8 @@ export class AppComponent {
 
   ngOnInit() {
     console.log('oauth test');
+    console.log('test callback', window.opener.Sfdc);
     try {
-      console.log('test callback', window.opener.Sfdc);
       window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
       // const Sfdc = window.opener.Sfdc;
 
