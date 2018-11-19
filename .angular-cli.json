@@ -21,7 +21,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": ["../node_modules/@salesforce/canvas-js-sdk/js/canvas-all.js"],
+      "scripts": ["../node_modules/@salesforce/canvas-js-sdk/js/canvas-all.js", "src/canvas-all.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
