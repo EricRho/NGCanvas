@@ -8,36 +8,9 @@ import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
 export class HelloComponent implements OnInit {
   public greeting = 'Hello World';
 
-  // @Input()
-  // src: string;
+  constructor() { }
 
-  // @Input()
-  // type: string;
-
-  // @ViewChild('script') script: ElementRef;
-
-  // constructor() { }
-
-  // ngOnInit() {
-  //   console.log('hello test');
-  // }
-
-  // convertToScript() {
-  //   var element = this.script.nativeElement;
-  //   var script = document.createElement("script");
-  //   script.type = this.type ? this.type : "text/javascript";
-  //   if (this.src) {
-  //       script.src = this.src;
-  //   }
-  //   if (element.innerHTML) {
-  //       script.innerHTML = element.innerHTML;
-  //   }
-  //   var parent = element.parentElement;
-  //   parent.parentElement.replaceChild(script, parent);
-  // }
-
-  // ngAfterViewInit() {
-  //   this.convertToScript();
-  // }
-
+  ngOnInit() {
+    console.log('hello test');
+  }
 }
