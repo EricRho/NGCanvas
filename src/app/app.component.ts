@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as Sfdc from '@salesforce/canvas-js-sdk';
 
 @Component({
   selector: 'app-root',
@@ -8,48 +9,44 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  public sfdc = Sfdc;
+
   ngOnInit() {
     console.log('oauth test');
-    console.log('test callback', window.opener.Sfdc);
-    try {
-      window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
-      // const Sfdc = window.opener.Sfdc;
-
-    } catch (ignore) {}
+    console.log('%c global ----> ', 'background:lime;color:black;', Sfdc);
+    this.checkSfdc();
+    this.loginHandler();
   }
 
-  // loginHandler(e) {
-  //   let uri;
-  //   if (!Sfdc.canvas.oauth.loggedin()) {
-  //     uri = Sfdc.canvas.oauth.loginUrl();
-  //     Sfdc.canvas.oauth.login(
-  //       {uri : uri,
-  //         params: {
-  //           response_type : "token",
-  //           client_id : "3MVG9U_dUptXGpYJeeYccVjOOOT_4RY3xy52COjqApTWSVDm7aNH0VW5zk4ELU3r_alMwGQ2fq_wUBs_l2dng",
-  //           redirect_uri : encodeURIComponent(
-  //               "https://ericrho.github.io/NGCanvas/callback.html")
-  //           }});
-  //   } else {
-  //       Sfdc.canvas.oauth.logout();
-  //       login.innerHTML = "Login";
-  //       Sfdc.canvas.byId("oauth").innerHTML = "";
-  //   }
-  //   return false;
-  //   }
+  checkSfdc() {
+    try {
+      window.opener.Sfdc.canvas.oauth.childWindowUnloadNotification(self.location.hash);
+    } catch(ignore) {
+      console.log('ignore! ----->', window.Sfdc);
+      this.sfdc = window.Sfdc;
+    }
+    console.log('SFDC', this.sfdc);
+  }
 
-    // Bootstrap the page once the DOM is ready.
-    // Sfdc.canvas(function() {
-    //     // On Ready...
-    //     var login    = Sfdc.canvas.byId("login"),
-    //         loggedIn = Sfdc.canvas.oauth.loggedin(),
-    //         token = Sfdc.canvas.oauth.token()
-    //     login.innerHTML = (loggedIn) ? "Logout" : "Login";
-    //     if (loggedIn) {
-    //         // Only displaying part of the OAuth token for better formatting.
-    //         Sfdc.canvas.byId("oauth").innerHTML = Sfdc.canvas.oauth.token()
-    //             .substring(1,40) + "…";
-    //     }
-    //     login.onclick=loginHandler;
-    // });
+  loginHandler(e) {
+    var uri;
+    if (!this.sfdc.canvas.oauth.loggedin()) {
+      console.log('not logged in');
+      uri = this.sfdc.canvas.oauth.loginUrl();
+      this.sfdc.canvas.oauth.login({
+        uri : uri,
+          params: {
+            response_type : "token",
+            client_id : "3MVG9U_dUptXGpYJeeYccVjOOOT_4RY3xy52COjqApTWSVDm7aNH0VW5zk4ELU3r_alMwGQ2fq_wUBs_l2dng",
+            redirect_uri : encodeURIComponent(
+                "https://ericrho.github.io/NGCanvas/callback.html")
+            }
+      });
+    } else {
+        this.sfdc.canvas.oauth.logout();
+        login.innerHTML = 'Login';
+        this.sfdc.canvas.byId('oauth').innerHTML = '';
+    }
+    return false;
+  }
 }

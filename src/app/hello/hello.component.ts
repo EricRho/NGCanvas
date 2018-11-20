@@ -12,6 +12,5 @@ export class HelloComponent implements OnInit {
 
   ngOnInit() {
     console.log('hello test');
-
   }
 }
