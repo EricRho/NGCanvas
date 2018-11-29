@@ -17,9 +17,16 @@ export class HelloComponent implements OnInit {
     console.log('%c--- hello ---', 'background:lime;color:black;', this.sfdc);
     console.log('OAuth', OAuth);
 
+    // let oauth = OAuth.createInstance();
+    // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
+  }
+
+  login() {
     let oauth = OAuth.createInstance();
     oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
   }
+
+
 
   // login() {
   //   let uri, login;
