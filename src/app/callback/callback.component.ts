@@ -14,10 +14,10 @@ export class CallbackComponent implements OnInit {
   }
 
   close() {
-    // const event = new CustomEvent('oauthCallback', {'detail': window.location.href});
+    const event = new CustomEvent('oauthCallback', {'detail': window.location.href});
     console.log('event', event);
 
-    // window.document.dispatchEvent(event);
+    window.opener.document.dispatchEvent(event);
     window.close();
   }
 
