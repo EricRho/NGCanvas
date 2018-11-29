@@ -1,3 +1,8 @@
 <h1>{{ greeting }}</h1>
 
-test
+<button (click)="login()">login</button>
+
+<br><br>
+
+<strong>Logged in?</strong>: {{ sfdc.canvas.oauth.loggedin() }}
+
