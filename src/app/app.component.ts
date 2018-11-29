@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as Sfdc from '@salesforce/canvas-js-sdk';
+import * as force from 'forcejs';
 
 @Component({
   selector: 'app-root',
