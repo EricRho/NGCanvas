@@ -14,7 +14,7 @@ export class HelloComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('%c--- hello ---', 'background:lime;color:black;', this.sfdc);
+    console.log('%c--- hello ---', 'background:lime;color:black;', this.sfdc.canvas.oauth);
 
     // let oauth = OAuth.createInstance();
     // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
