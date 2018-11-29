@@ -1,3 +1,15 @@
 <p>
   callback works!
 </p>
+
+<html>
+<body>
+<script>
+    var event = new CustomEvent("oauthCallback", {'detail': window.location.href});
+    console.log('event', event);
+
+    window.opener.document.dispatchEvent(event);
+    window.close();
+</script>
+</body>
+</html>

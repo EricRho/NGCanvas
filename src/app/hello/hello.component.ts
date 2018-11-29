@@ -25,10 +25,12 @@ export class HelloComponent implements OnInit {
     console.log('OAuth', OAuth);
 
     oauth.loginURL = 'https://test.salesforce.com';
+    oauth.oathCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback';
 
-    oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
-    console.log('dataService', DataService);
-    DataService.getInstance();
+    // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
+    oauth.login().then(result => {
+      console.log('result', result);
+    });
   }
 
 

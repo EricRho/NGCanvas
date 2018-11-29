@@ -10,6 +10,15 @@ export class CallbackComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.close();
+  }
+
+  close() {
+    const event = new CustomEvent('oauthCallback', {'detail': window.location.href});
+    console.log('event', event);
+
+    window.opener.document.dispatchEvent(event);
+    window.close();
   }
 
 }

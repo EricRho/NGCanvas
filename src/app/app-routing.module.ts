@@ -6,7 +6,7 @@ import { HelloComponent } from './hello/hello.component';
 import { CallbackComponent } from './callback/callback.component';
 
 const appRoutes: Routes = [
-  { path: 'callback', component: CallbackComponent }
+  { path: 'oauthcallback.html', component: CallbackComponent }
 ];
 
 @NgModule({
