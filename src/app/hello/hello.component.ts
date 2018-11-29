@@ -25,10 +25,13 @@ export class HelloComponent implements OnInit {
     console.log('OAuth', OAuth);
 
     oauth.loginURL = 'https://test.salesforce.com';
-    oauth.oathCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback';
+    // oauth.oauthCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback';
 
     // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
     oauth.login().then(result => {
+      console.log('oauth', oauth);
+      console.log('dataService', DataService);
+
       console.log('result', result);
     });
   }
@@ -48,6 +51,8 @@ export class HelloComponent implements OnInit {
             redirect_uri: encodeURIComponent('localhost:8200/oauthcallback.html')
           }
       });
+    } else {
+      this.sfdc.canvas.oauth.logout();
     }
   }
 
