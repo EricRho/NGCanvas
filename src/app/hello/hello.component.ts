@@ -20,7 +20,7 @@ export class HelloComponent implements OnInit {
     // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
   }
 
-  login() {
+  forceLogin() {
     let oauth = OAuth.createInstance();
     console.log('OAuth', OAuth);
 
@@ -31,6 +31,24 @@ export class HelloComponent implements OnInit {
     oauth.login().then(result => {
       console.log('result', result);
     });
+  }
+
+  sfdcLogin() {
+    console.log('%c--- sfdc login ---', 'background:white;color:black;', this.sfdc);
+    if (!this.sfdc.canvas.oauth.loggedin()) {
+      console.log('not logged in. logging now');
+
+      let uri = this.sfdc.canvas.oauth.loginUrl = "https://test.salesforce.com";
+
+      this.sfdc.canvas.oauth.login({
+        uri: uri,
+          params: {
+            response_type: 'token',
+            client_id: '3MVG9U_dUptXGpYJeeYccVjOOOT_4RY3xy52COjqApTWSVDm7aNH0VW5zk4ELU3r_alMwGQ2fq_wUBs_l2dng',
+            redirect_uri: encodeURIComponent('localhost:8200/oauthcallback.html')
+          }
+      });
+    }
   }
 
 
