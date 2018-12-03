@@ -16,9 +16,6 @@ export class HelloComponent implements OnInit {
 
   ngOnInit() {
     console.log('%c--- hello ---', 'background:lime;color:black;', this.sfdc.canvas.oauth);
-
-    // let oauth = OAuth.createInstance();
-    // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
   }
 
   forceLogin() {
@@ -26,15 +23,17 @@ export class HelloComponent implements OnInit {
     console.log('OAuth', force.OAuth);
 
     oauth.loginURL = 'https://test.salesforce.com';
-    oauth.oauthCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback.html';
+    oauth.oauthCallbackURI = 'https://ericrho.github.io/NGCanvas/oauthcallback.html';
 
-    // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
     oauth.login().then(result => {
       console.log('oauth', oauth);
       console.log('dataService', force.DataService);
 
-      console.log('result', result);
       force.DataService.createInstance(result);
+      console.log('result', result);
+      const service = force.DataService.getInstance();
+      console.log('%c--- instance ---', 'background:plum;color:black;', service);
+
     });
   }
 
