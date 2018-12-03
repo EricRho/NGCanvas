@@ -26,7 +26,7 @@ export class HelloComponent implements OnInit {
     console.log('OAuth', force.OAuth);
 
     oauth.loginURL = 'https://test.salesforce.com';
-    // oauth.oauthCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback';
+    oauth.oauthCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback.html';
 
     // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
     oauth.login().then(result => {
@@ -55,8 +55,7 @@ export class HelloComponent implements OnInit {
             redirect_uri: decodeURIComponent("https://ericrho.github.io/NGCanvas/oauthcallback.html")
           }
       });
-      console.log('test sfdc login');
-      this.sfdc.canvas.oauth.checkChildWindowStatus();
+      console.log('test sfdc login', this.sfdc.canvas.oauth.loggedin());
     } else {
       this.sfdc.canvas.oauth.logout();
     }
