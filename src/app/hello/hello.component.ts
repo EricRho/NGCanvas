@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
-import { OAuth, DataService } from 'forcejs';
+// import { OAuth, DataService } from 'forcejs';
+import * as force from 'forcejs';
 
 @Component({
   selector: 'app-hello',
@@ -21,8 +22,8 @@ export class HelloComponent implements OnInit {
   }
 
   forceLogin() {
-    let oauth = OAuth.createInstance();
-    console.log('OAuth', OAuth);
+    let oauth = force.OAuth.createInstance();
+    console.log('OAuth', force.OAuth);
 
     oauth.loginURL = 'https://test.salesforce.com';
     // oauth.oauthCallbackURL = 'https://ericrho.github.io/NGCanvas/oauthcallback';
@@ -30,7 +31,7 @@ export class HelloComponent implements OnInit {
     // oauth.login().then(oauthResult => DataService.createInstance(oauthResult));
     oauth.login().then(result => {
       console.log('oauth', oauth);
-      console.log('dataService', DataService);
+      console.log('dataService', force.DataService);
 
       console.log('result', result);
     });
@@ -48,15 +49,16 @@ export class HelloComponent implements OnInit {
           params: {
             response_type: 'token',
             client_id: '3MVG9U_dUptXGpYJeeYccVjOOOT_4RY3xy52COjqApTWSVDm7aNH0VW5zk4ELU3r_alMwGQ2fq_wUBs_l2dng',
-            redirect_uri: encodeURIComponent('localhost:8200/oauthcallback.html')
+            // redirect_uri: encodeURIComponent("localhost:8200/oauthcallback.html")
+            redirect_uri: decodeURIComponent("https://ericrho.github.io/NGCanvas/oauthcallback.html")
           }
       });
+      console.log('test sfdc login');
+      this.sfdc.canvas.oauth.checkChildWindowStatus();
     } else {
       this.sfdc.canvas.oauth.logout();
     }
   }
-
-
 
   // login() {
   //   let uri, login;
