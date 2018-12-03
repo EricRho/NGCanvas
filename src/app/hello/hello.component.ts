@@ -34,6 +34,7 @@ export class HelloComponent implements OnInit {
       console.log('dataService', force.DataService);
 
       console.log('result', result);
+      force.DataService.createInstance(result);
     });
   }
 
@@ -42,7 +43,8 @@ export class HelloComponent implements OnInit {
     if (!this.sfdc.canvas.oauth.loggedin()) {
       console.log('not logged in. logging now');
 
-      let uri = this.sfdc.canvas.oauth.loginUrl = "https://test.salesforce.com";
+      // let uri = this.sfdc.canvas.oauth.loginUrl = "https://test.salesforce.com";
+      const uri = "https://test.salesforce.com/services/oauth2/authorize";
 
       this.sfdc.canvas.oauth.login({
         uri: uri,
