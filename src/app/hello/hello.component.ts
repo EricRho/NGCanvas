@@ -22,7 +22,7 @@ export class HelloComponent implements OnInit {
     let oauth = force.OAuth.createInstance();
     console.log('OAuth', force.OAuth);
 
-    oauth.loginURL = 'https://test.salesforce.com';
+    oauth.loginURL = 'https://login.salesforce.com';
     oauth.oauthCallbackURI = 'https://ericrho.github.io/NGCanvas/oauthcallback.html';
 
     oauth.login().then(result => {
@@ -43,13 +43,13 @@ export class HelloComponent implements OnInit {
       console.log('not logged in. logging now');
 
       // let uri = this.sfdc.canvas.oauth.loginUrl = "https://test.salesforce.com";
-      const uri = "https://test.salesforce.com/services/oauth2/authorize";
+      const uri = "https://login.salesforce.com/services/oauth2/authorize";
 
       this.sfdc.canvas.oauth.login({
         uri: uri,
           params: {
             response_type: 'token',
-            client_id: '3MVG9U_dUptXGpYJeeYccVjOOOT_4RY3xy52COjqApTWSVDm7aNH0VW5zk4ELU3r_alMwGQ2fq_wUBs_l2dng',
+            client_id: '3MVG9nthuDc9owbcFbUC4DgBU7_v93vEIGexYBPDpg7219p1naqP2E.P9wzq8nOhEP0LB07LY_6pZCFbqEFhd',
             // redirect_uri: encodeURIComponent("localhost:8200/oauthcallback.html")
             redirect_uri: decodeURIComponent("https://ericrho.github.io/NGCanvas/oauthcallback.html")
           }
